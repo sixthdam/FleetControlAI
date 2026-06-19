@@ -4,120 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guardian Drive AI - Centro de Control</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-brand">
-            <span class="nav-logo">🚛</span>
-            <h1>Guardian Drive AI</h1>
-            <span class="nav-subtitle">Transporte Inteligente y Seguridad Vial</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html" class="nav-link active">Dashboard</a>
-            <a href="admin.html" class="nav-link">Admin</a>
-            <a href="driver.html" class="nav-link">Conductor</a>
-        </div>
-    </nav>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
 
-    <main class="dashboard">
-        <section class="hero">
-            <h2>Centro de Control Guardian Drive AI</h2>
-            <p class="hero-desc">
-                Supervicion, monitoreo y analisis de flotas de transporte terrestre
-                usando inteligencia artificial y datos geoespaciales.
-            </p>
-            <div class="hero-stats" id="heroStats">
-                <div class="stat-card" data-label="Muestras">
-                    <span class="stat-value" id="statSamples">--</span>
-                    <span class="stat-label">Capturas NYC</span>
+    <div class="flex h-screen overflow-hidden">
+
+        <aside class="w-64 bg-slate-950 p-6 flex flex-col justify-between border-r border-slate-800">
+            <div>
+                <div class="flex items-center gap-3 mb-8">
+                    <span class="text-2xl">🚛</span>
+                    <h1 class="text-xl font-bold tracking-wider text-white">GuardianDrive <span class="text-emerald-400">AI</span></h1>
                 </div>
-                <div class="stat-card" data-label="Detecciones">
-                    <span class="stat-value" id="statDetections">--</span>
-                    <span class="stat-label">Objetos detectados</span>
-                </div>
-                <div class="stat-card" data-label="Geo-cerca">
-                    <span class="stat-value" id="statInside">--</span>
-                    <span class="stat-label">Dentro Manhattan</span>
-                </div>
-                <div class="stat-card" data-label="Proximidad">
-                    <span class="stat-value" id="statNear">--</span>
-                    <span class="stat-label">Cercanos Times Sq</span>
-                </div>
+                <nav class="space-y-2">
+                    <a href="index.html" class="flex items-center gap-3 px-4 py-3 bg-emerald-500/10 text-emerald-400 rounded-xl font-medium transition">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Dashboard Global
+                    </a>
+                    <a href="admin.html" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900 hover:text-slate-200 rounded-xl transition">
+                        <i data-lucide="shield-alert" class="w-5 h-5"></i> Vista Admin
+                    </a>
+                    <a href="heatmap.html" class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:bg-slate-900 hover:text-slate-200 rounded-xl transition">
+                        <i data-lucide="route" class="w-5 h-5"></i> Mapas de Calor
+                    </a>
+                </nav>
             </div>
-        </section>
-
-        <section class="grid-2col">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Objetos detectados por clase</h3>
-                    <span class="card-rubric">Supervision inteligente de flotas</span>
-                </div>
-                <div class="card-body">
-                    <canvas id="classChart"></canvas>
-                </div>
-                <div class="card-footer">
-                    <p>Distribucion de objetos detectados via vision artificial en las capturas de la flota.</p>
-                </div>
+            <div class="text-xs text-slate-500 border-t border-slate-800 pt-4 flex justify-between items-center">
+                <span>Operación Central • Sala D1</span>
+                <span class="bg-slate-900 px-2 py-0.5 rounded text-slate-400 border border-slate-800">v2.0</span>
             </div>
+        </aside>
 
-            <div class="card">
-                <div class="card-header">
-                    <h3>Geo-cerca Manhattan</h3>
-                    <span class="card-rubric">Monitoreo de rutas y cumplimiento</span>
+        <main class="flex-1 overflow-y-auto p-8 space-y-8">
+            
+            <header class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-white tracking-tight">Centro de Control General</h2>
+                    <p class="text-slate-400 mt-1">Supervisión, monitoreo y análisis macroscópico de flotas de transporte mediante IA y datos geoespaciales.</p>
                 </div>
-                <div class="card-body chart-donut">
-                    <canvas id="geoChart"></canvas>
+                <div class="flex items-center gap-4 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800">
+                    <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-semibold text-slate-300">Flota Conectada</span>
                 </div>
-                <div class="card-footer">
-                    <p>Vehiculos dentro/fuera del perimetro autorizado de Manhattan.</p>
-                </div>
-            </div>
-        </section>
+            </header>
 
-        <section class="grid-2col">
-            <div class="card full-width">
-                <div class="card-header">
-                    <h3>Densidad de flota por zona</h3>
-                    <span class="card-rubric">Prediccion de retrasos y eventos</span>
+            <section class="grid grid-cols-1 md:grid-cols-4 gap-6" id="heroStats">
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Pasajeros Movilizados</p>
+                        <h3 class="text-3xl font-bold mt-2 text-white" id="statSamples">26,450</h3>
+                        <p class="text-xs text-slate-500 mt-1">Flujo acumulado diario</p>
+                    </div>
+                    <div class="p-4 bg-emerald-500/10 rounded-xl text-emerald-400"><i data-lucide="users" class="w-6 h-6"></i></div>
                 </div>
-                <div class="card-body">
+
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Objetos Detectados</p>
+                        <h3 class="text-3xl font-bold mt-2 text-blue-400" id="statDetections">1,842</h3>
+                        <p class="text-xs text-emerald-400 mt-1 flex items-center gap-1"><i data-lucide="trending-up" class="w-3 h-3"></i> Visión Artificial activa</p>
+                    </div>
+                    <div class="p-4 bg-blue-500/10 rounded-xl text-blue-400"><i data-lucide="eye" class="w-6 h-6"></i></div>
+                </div>
+
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Cumplimiento de Rutas</p>
+                        <h3 class="text-3xl font-bold mt-2 text-white" id="statInside">94.2%</h3>
+                        <p class="text-xs text-emerald-400 mt-1 flex items-center gap-1"><i data-lucide="check" class="w-3 h-3"></i> Dentro de Geo-cerca</p>
+                    </div>
+                    <div class="p-4 bg-amber-500/10 rounded-xl text-amber-400"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                </div>
+
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-slate-400 uppercase tracking-wider">Demora Promedio</p>
+                        <h3 class="text-3xl font-bold mt-2 text-red-400" id="statNear">+4.2 min</h3>
+                        <p class="text-xs text-red-400/80 mt-1">Zonas de tráfico denso</p>
+                    </div>
+                    <div class="p-4 bg-red-500/10 rounded-xl text-red-400"><i data-lucide="clock" class="w-6 h-6"></i></div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-white">Objetos Detectados en Vía por Clase</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Métrica macro de supervisión inteligente de flotas mediante bounding boxes en FiftyOne.</p>
+                    </div>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="classChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-white">Cumplimiento Perimetral (Geo-cerca)</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Monitoreo de rutas y control de cumplimiento geoespacial de la flota entera.</p>
+                    </div>
+                    <div class="h-64 flex items-center justify-center">
+                        <canvas id="geoChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-slate-950 p-6 rounded-2xl border border-slate-800">
+                <div class="mb-4 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Análisis de Densidad de Flota por Zona</h3>
+                        <p class="text-xs text-slate-400 mt-0.5">Predicción de retrasos: Puntos con mayor densidad indican embotellamientos o congestión activa.</p>
+                    </div>
+                    <span class="text-xs bg-slate-900 text-slate-400 px-3 py-1.5 rounded-lg border border-slate-800">Métrica Predictiva</span>
+                </div>
+                <div class="h-80 w-full flex items-center justify-center">
                     <canvas id="densityChart"></canvas>
                 </div>
-                <div class="card-footer">
-                    <p>Concentracion de capturas por sector. Zonas con mayor densidad indican trafico y potenciales retrasos.</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="rubrics-section">
-            <h3>Rubricas cubiertas</h3>
-            <div class="rubrics-grid">
-                <div class="rubric-card">
-                    <div class="rubric-icon">👁️</div>
-                    <h4>Supervision inteligente de flotas</h4>
-                    <p>Deteccion y clasificacion de objetos (vehiculos, peatones, senales) en cada captura via bounding boxes con FiftyOne.</p>
+            <section class="space-y-4">
+                <h3 class="text-xl font-bold text-white tracking-tight">Capacidades del Sistema Integrado</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-emerald-400 mb-2"><i data-lucide="eye" class="w-6 h-6"></i></div>
+                        <h4 class="font-bold text-sm text-slate-200">Supervisión Inteligente</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Clasificación automática de objetos viales mediante visión artificial perimetral.</p>
+                    </div>
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-blue-400 mb-2"><i data-lucide="messages-square" class="w-6 h-6"></i></div>
+                        <h4 class="font-bold text-sm text-slate-200">Comunicación Central</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Interconectividad total vía FiftyOne App junto con paneles de alertas reactivos.</p>
+                    </div>
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-amber-400 mb-2"><i data-lucide="map" class="w-6 h-6"></i></div>
+                        <h4 class="font-bold text-sm text-slate-200">Rutas y Velocidad</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Filtrado geoespacial automatizado mediante perímetros virtuales de cumplimiento.</p>
+                    </div>
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-red-400 mb-2"><i data-lucide="trending-up" class="w-6 h-6"></i></div>
+                        <h4 class="font-bold text-sm text-slate-200">Predicción de Eventos</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Identificación analítica de cuellos de botella para mitigar retrasos operativos.</p>
+                    </div>
                 </div>
-                <div class="rubric-card">
-                    <div class="rubric-icon">📡</div>
-                    <h4>Comunicacion centros de control</h4>
-                    <p>Panel interactivo en tiempo real con FiftyOne App + mapa de ubicaciones sincronizado.</p>
-                </div>
-                <div class="rubric-card">
-                    <div class="rubric-icon">📍</div>
-                    <h4>Monitoreo de rutas y velocidad</h4>
-                    <p>Geo-cerca virtual de Manhattan con filtrado geoespacial dentro/fuera del perimetro.</p>
-                </div>
-                <div class="rubric-card">
-                    <div class="rubric-icon">📊</div>
-                    <h4>Prediccion de retrasos y eventos</h4>
-                    <p>Analisis de densidad por zona y distribucion de objetos para identificar patrones de trafico.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
+    </div>
 
+    <script>
+        lucide.createIcons();
+    </script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>
