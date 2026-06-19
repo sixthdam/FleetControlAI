@@ -1,6 +1,6 @@
 descripci_n_general:
   _text: "Descripción general"
-  paragraphs[1]: "Guardian Drive AI es una propuesta de sistema inteligente de prevención para vehículos particulares, flotas y transporte público. Su objetivo es detectar conductas de riesgo, analizar el contexto con inteligencia artificial y actuar de forma escalonada antes de que ocurra un accidente."
+  paragraphs[1]: "FleetControlAI es una propuesta de sistema inteligente de prevención para vehículos particulares, flotas y transporte público. Su objetivo es detectar conductas de riesgo, analizar el contexto con inteligencia artificial y actuar de forma escalonada antes de que ocurra un accidente."
   problema_que_resuelve:
     _text: "Problema que resuelve"
     paragraphs[2]: "Actualmente, muchos accidentes y situaciones críticas de transporte están relacionados con:", "La mayoría de sistemas tradicionales registran lo ocurrido después del incidente. Esta propuesta busca prevenir el riesgo antes de que se materialice."

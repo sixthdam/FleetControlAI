@@ -42,7 +42,7 @@ MANHATTAN = [
 ]
 
 print("=" * 60)
-print("  Guardian Drive AI - Transporte Inteligente y Seguridad Vial")
+print("  FleetControlAI - Transporte Inteligente y Seguridad Vial")
 print("=" * 60)
 
 dataset = load_fleet_data()
@@ -75,10 +75,10 @@ print("  \u25cf Comunicacion centros de control -> App + mapa interactivo + plug
 print("  \u25cf Monitoreo rutas/velocidad -> Geo-cerca Manhattan")
 print("  \u25cf Prediccion retrasos/eventos -> Densidad por zona y clase")
 
-print("\n  Paneles Guardian Drive AI disponibles en la App:")
-print("  - Guardian Drive AI Dashboard: estadisticas generales")
-print("  - Guardian Drive AI Geo-cerca: monitoreo de rutas")
-print("  - Guardian Drive AI Flota: mapa de ubicaciones")
+print("\n  Paneles FleetControlAI disponibles en la App:")
+print("  - FleetControlAI Dashboard: estadisticas generales")
+print("  - FleetControlAI Geo-cerca: monitoreo de rutas")
+print("  - FleetControlAI Flota: mapa de ubicaciones")
 
 dashboard_path = os.path.join(
     os.path.dirname(os.path.dirname(__file__)), "src", "index.html"
