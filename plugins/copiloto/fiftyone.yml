@@ -1,6 +1,6 @@
 name: "@copiloto/guardian-drive-ai"
 version: "1.0.0"
-description: "Panel de control Guardian Drive AI - Transporte Inteligente y Seguridad Vial"
+description: "Panel de control FleetControlAI - Transporte Inteligente y Seguridad Vial"
 url: "https://github.com/"
 
 fiftyone:

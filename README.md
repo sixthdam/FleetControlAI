@@ -11,7 +11,7 @@ Las empresas de transporte deben garantizar operaciones seguras, eficientes y tr
 | Rubrica | Implementacion |
 |---|---|
 | **Supervision inteligente de flotas** | Deteccion de objetos (vehiculos, peatones, senales) en cada captura con bounding boxes y estadisticas por zona via FiftyOne + grafico de barras en dashboard |
-| **Comunicacion inteligente con centros de control** | FiftyOne App como torre de control con mapa interactivo + plugin Guardian Drive AI con 3 paneles + dashboard web independiente en `src/` |
+| **Comunicacion inteligente con centros de control** | FiftyOne App como torre de control con mapa interactivo + plugin FleetControlAI con 3 paneles + dashboard web independiente en `src/` |
 | **Monitoreo de velocidad y cumplimiento de rutas** | Geo-cerca virtual (Manhattan) que filtra capturas dentro/fuera del perimetro autorizado con `geo_within()` |
 | **Prediccion de retrasos y eventos operativos** | Analisis de densidad de objetos por zona geografica (Times Square proximity), distribucion de clases detectadas, y mapa de calor de ubicaciones |
 
@@ -57,9 +57,9 @@ FiftyOne Dataset (440 samples, 8,620 detecciones)
            │
            ├── FiftyOne App (localhost:5151)
            │     ├── Location scatterplot interactivo
-            │     ├── Guardian Drive AI Dashboard panel
-            │     ├── Guardian Drive AI Geo-cerca panel
-            │     └── Guardian Drive AI Flota panel (mapa)
+            │     ├── FleetControlAI Dashboard panel
+            │     ├── FleetControlAI Geo-cerca panel
+            │     └── FleetControlAI Flota panel (mapa)
            │
            └── src/index.html (dashboard standalone)
                  ├── Estadisticas de flota
@@ -105,18 +105,18 @@ Esto:
 1. Carga dataset `quickstart-geo` (440 imagenes NYC)
 2. Conecta a MongoDB Atlas con credenciales de `.env`
 3. Calcula estadisticas de flota y analisis geoespacial
-4. Registra el plugin Guardian Drive AI con 3 paneles personalizados
+4. Registra el plugin FleetControlAI con 3 paneles personalizados
 5. Abre el dashboard web standalone en tu navegador
 6. Lanza FiftyOne App en `http://localhost:5151`
 
-### Paneles Guardian Drive AI en FiftyOne App
+### Paneles FleetControlAI en FiftyOne App
 
 Una vez abierta la App en localhost:5151:
 1. Click en el icono **+** junto a la pestana "Samples"
-2. Selecciona cualquiera de los 3 paneles Guardian Drive AI:
-   - **Guardian Drive AI Dashboard**: metricas generales de flota
-   - **Guardian Drive AI Geo-cerca**: monitoreo dentro/fuera Manhattan
-   - **Guardian Drive AI Flota**: mapa interactivo de ubicaciones
+2. Selecciona cualquiera de los 3 paneles FleetControlAI:
+   - **FleetControlAI Dashboard**: metricas generales de flota
+   - **FleetControlAI Geo-cerca**: monitoreo dentro/fuera Manhattan
+   - **FleetControlAI Flota**: mapa interactivo de ubicaciones
 
 ### CLI de FiftyOne
 
@@ -169,17 +169,17 @@ fiftyone app launch
 | **JavaScript (ES6+)** | Graficos interactivos y animaciones |
 | **HTML5** | Pagina web standalone del centro de control |
 
-## Plugin Guardian Drive AI
+## Plugin FleetControlAI
 
 El plugin `@copiloto/guardian-drive-ai` proporciona 3 paneles personalizados dentro de la FiftyOne App:
 
-### 1. Guardian Drive AI Dashboard
+### 1. FleetControlAI Dashboard
 Metricas generales: muestras, detecciones totales, promedio por captura, y grafico de barras con distribucion de clases detectadas.
 
-### 2. Guardian Drive AI Geo-cerca
+### 2. FleetControlAI Geo-cerca
 Analisis de cumplimiento de rutas: vehiculos dentro/fuera del perimetro de Manhattan con grafico de dona.
 
-### 3. Guardian Drive AI Flota
+### 3. FleetControlAI Flota
 Mapa interactivo con todas las ubicaciones GPS de las capturas, marcador de Times Square, y conteo de muestras cercanas.
 
 ## Instalación de plugins oficiales de FiftyOne (opcional)

@@ -18,7 +18,7 @@ class CopilotoDashboard(foo.Panel):
     def config(self):
         return foo.PanelConfig(
             name="copiloto_dashboard",
-            label="Guardian Drive AI Dashboard",
+            label="FleetControlAI Dashboard",
             allow_multiple=False,
             surfaces="grid",
         )
@@ -63,7 +63,7 @@ class CopilotoDashboard(foo.Panel):
     def render(self, ctx):
         panel = types.Object()
 
-        header = types.LazyFieldView(label="Guardian Drive AI - Centro de Control")
+        header = types.LazyFieldView(label="FleetControlAI - Centro de Control")
         panel.view("header", view=header)
 
         kvs = types.KeyValueView()
@@ -91,7 +91,7 @@ class CopilotoGeoFence(foo.Panel):
     def config(self):
         return foo.PanelConfig(
             name="copiloto_geo_fence",
-            label="Guardian Drive AI Geo-cerca",
+            label="FleetControlAI Geo-cerca",
             allow_multiple=False,
             surfaces="grid",
         )
@@ -143,7 +143,7 @@ class CopilotoGeoFence(foo.Panel):
     def render(self, ctx):
         panel = types.Object()
 
-        header = types.LazyFieldView(label="Guardian Drive AI - Monitoreo de Rutas")
+        header = types.LazyFieldView(label="FleetControlAI - Monitoreo de Rutas")
         panel.view("header", view=header)
 
         kvs = types.KeyValueView()
@@ -172,7 +172,7 @@ class CopilotoFleetStats(foo.Panel):
     def config(self):
         return foo.PanelConfig(
             name="copiloto_fleet_stats",
-            label="Guardian Drive AI Flota",
+            label="FleetControlAI Flota",
             allow_multiple=False,
             surfaces="grid",
         )
@@ -243,7 +243,7 @@ class CopilotoFleetStats(foo.Panel):
     def render(self, ctx):
         panel = types.Object()
 
-        header = types.LazyFieldView(label="Guardian Drive AI - Supervision de Flota")
+        header = types.LazyFieldView(label="FleetControlAI - Supervision de Flota")
         panel.view("header", view=header)
 
         kvs = types.KeyValueView()
