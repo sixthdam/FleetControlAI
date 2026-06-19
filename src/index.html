@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Drive AI - Centro de Control</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">🚛</span>
+            <h1>Guardian Drive AI</h1>
+            <span class="nav-subtitle">Transporte Inteligente y Seguridad Vial</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Dashboard</a>
+            <a href="admin.html" class="nav-link">Admin</a>
+            <a href="driver.html" class="nav-link">Conductor</a>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <section class="hero">
+            <h2>Centro de Control Guardian Drive AI</h2>
+            <p class="hero-desc">
+                Supervicion, monitoreo y analisis de flotas de transporte terrestre
+                usando inteligencia artificial y datos geoespaciales.
+            </p>
+            <div class="hero-stats" id="heroStats">
+                <div class="stat-card" data-label="Muestras">
+                    <span class="stat-value" id="statSamples">--</span>
+                    <span class="stat-label">Capturas NYC</span>
+                </div>
+                <div class="stat-card" data-label="Detecciones">
+                    <span class="stat-value" id="statDetections">--</span>
+                    <span class="stat-label">Objetos detectados</span>
+                </div>
+                <div class="stat-card" data-label="Geo-cerca">
+                    <span class="stat-value" id="statInside">--</span>
+                    <span class="stat-label">Dentro Manhattan</span>
+                </div>
+                <div class="stat-card" data-label="Proximidad">
+                    <span class="stat-value" id="statNear">--</span>
+                    <span class="stat-label">Cercanos Times Sq</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-2col">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Objetos detectados por clase</h3>
+                    <span class="card-rubric">Supervision inteligente de flotas</span>
+                </div>
+                <div class="card-body">
+                    <canvas id="classChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <p>Distribucion de objetos detectados via vision artificial en las capturas de la flota.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Geo-cerca Manhattan</h3>
+                    <span class="card-rubric">Monitoreo de rutas y cumplimiento</span>
+                </div>
+                <div class="card-body chart-donut">
+                    <canvas id="geoChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <p>Vehiculos dentro/fuera del perimetro autorizado de Manhattan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-2col">
+            <div class="card full-width">
+                <div class="card-header">
+                    <h3>Densidad de flota por zona</h3>
+                    <span class="card-rubric">Prediccion de retrasos y eventos</span>
+                </div>
+                <div class="card-body">
+                    <canvas id="densityChart"></canvas>
+                </div>
+                <div class="card-footer">
+                    <p>Concentracion de capturas por sector. Zonas con mayor densidad indican trafico y potenciales retrasos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="rubrics-section">
+            <h3>Rubricas cubiertas</h3>
+            <div class="rubrics-grid">
+                <div class="rubric-card">
+                    <div class="rubric-icon">👁️</div>
+                    <h4>Supervision inteligente de flotas</h4>
+                    <p>Deteccion y clasificacion de objetos (vehiculos, peatones, senales) en cada captura via bounding boxes con FiftyOne.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">📡</div>
+                    <h4>Comunicacion centros de control</h4>
+                    <p>Panel interactivo en tiempo real con FiftyOne App + mapa de ubicaciones sincronizado.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">📍</div>
+                    <h4>Monitoreo de rutas y velocidad</h4>
+                    <p>Geo-cerca virtual de Manhattan con filtrado geoespacial dentro/fuera del perimetro.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">📊</div>
+                    <h4>Prediccion de retrasos y eventos</h4>
+                    <p>Analisis de densidad por zona y distribucion de objetos para identificar patrones de trafico.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

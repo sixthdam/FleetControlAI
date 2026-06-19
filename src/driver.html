@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Drive AI - Conductor</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">🚛</span>
+            <h1>Guardian Drive AI</h1>
+            <span class="nav-subtitle">Panel Conductor</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="admin.html" class="nav-link">Admin</a>
+            <a href="driver.html" class="nav-link active">Conductor</a>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <section class="hero">
+            <h2>Panel del Conductor</h2>
+            <p class="hero-desc">Tu estado en tiempo real, alertas recibidas y estadisticas de tu conduccion.</p>
+            <div class="hero-stats" id="driverStats">
+                <div class="stat-card driver-status-card">
+                    <span class="driver-name">Carlos Mendez</span>
+                    <span class="driver-vehicle">BUS-001 | Ruta 101</span>
+                    <span class="status-badge active" style="font-size:14px; padding:6px 16px;">En ruta - 3h 45m</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value safe">42</span>
+                    <span class="stat-label">Velocidad actual (km/h)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="driverScore" style="color: #22c55e;">92</span>
+                    <span class="stat-label">Puntaje de conduccion</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value warning">3</span>
+                    <span class="stat-label">Alertas hoy</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-2col">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Alertas recibidas (hoy)</h3>
+                    <span class="badge badge-yellow">3 alertas</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="alert-timeline" id="driverAlerts">
+                        <div class="alert-item level-1">
+                            <div class="alert-level">N1</div>
+                            <div class="alert-content">
+                                <strong>Advertencia sonora</strong> Exceso de velocidad: 47 km/h en zona de 40 km/h
+                                <span class="alert-time">hace 1h 20m</span>
+                            </div>
+                            <div class="alert-response">
+                                <span class="response-badge resolved">Atendida</span>
+                            </div>
+                        </div>
+                        <div class="alert-item level-1">
+                            <div class="alert-level">N1</div>
+                            <div class="alert-content">
+                                <strong>Advertencia sonora</strong> Uso de celular detectado por camara interior
+                                <span class="alert-time">hace 2h 05m</span>
+                            </div>
+                            <div class="alert-response">
+                                <span class="response-badge resolved">Atendida</span>
+                            </div>
+                        </div>
+                        <div class="alert-item level-2">
+                            <div class="alert-level">N2</div>
+                            <div class="alert-content">
+                                <strong>Advertencia visual</strong> Fatiga detectada: parpadeo frecuente. Sugerencia: tomar pausa
+                                <span class="alert-time">hace 3h 30m</span>
+                            </div>
+                            <div class="alert-response">
+                                <span class="response-badge pending">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">Sistema escalonado: N1 sonora, N2 visual, N3 reporte automatico a central.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Prueba de alcohol - inicio jornada</h3>
+                    <span class="badge badge-green">Aprobado</span>
+                </div>
+                <div class="card-body" style="flex-direction: column; gap: 16px; text-align: center;">
+                    <div style="font-size: 48px; margin: 8px 0;">✅</div>
+                    <div style="font-size: 28px; font-weight: 700; color: #22c55e;">0.00 g/L</div>
+                    <div style="color: #94a3b8;">Resultado: Negativo - Vehiculo habilitado</div>
+                    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 8px;">
+                        <span class="status-badge active">06:30 AM</span>
+                        <span class="status-badge active">Inicio jornada</span>
+                    </div>
+                </div>
+                <div class="card-footer">Alcoholimetro inteligente: prueba requerida antes de arrancar el vehiculo.</div>
+            </div>
+        </section>
+
+        <section class="grid-2col">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Monitor de fatiga</h3>
+                    <span class="card-rubric">Detector de fatiga</span>
+                </div>
+                <div class="card-body" style="flex-direction: column; align-items: stretch;">
+                    <div class="fatigue-meter">
+                        <div class="fatigue-label">
+                            <span>Nivel de fatiga actual</span>
+                            <span class="status-badge warning">Medio</span>
+                        </div>
+                        <div class="fatigue-bar">
+                            <div class="fatigue-fill" style="width: 55%;"></div>
+                        </div>
+                        <div class="fatigue-markers">
+                            <span>Bajo</span>
+                            <span>Medio</span>
+                            <span>Alto</span>
+                            <span>Critico</span>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                        <div class="stat-card" style="padding: 12px;">
+                            <span style="font-size: 24px; font-weight: 700; color: #f59e0b;">3h 45m</span>
+                            <span class="stat-label">Tiempo conduciendo</span>
+                        </div>
+                        <div class="stat-card" style="padding: 12px;">
+                            <span style="font-size: 24px; font-weight: 700; color: #3b82f6;">28</span>
+                            <span class="stat-label">Parpadeos/min</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">Camara facial + ritmo cardiaco + frecuencia de parpadeo. Sugerencia: pausa cada 2 horas.</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Ruta y GPS</h3>
+                    <span class="card-rubric">GPS inteligente</span>
+                </div>
+                <div class="card-body" style="flex-direction: column; gap: 16px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;">
+                        <div class="route-info">
+                            <span class="route-label">Ruta asignada</span>
+                            <span class="route-value">Ruta 101 - Centro</span>
+                        </div>
+                        <div class="route-info">
+                            <span class="route-label">Proxima parada</span>
+                            <span class="route-value">Plaza Central (2.3 km)</span>
+                        </div>
+                        <div class="route-info">
+                            <span class="route-label">Limite via</span>
+                            <span class="route-value">40 km/h</span>
+                        </div>
+                        <div class="route-info">
+                            <span class="route-label">ETA destino</span>
+                            <span class="route-value">14 min</span>
+                        </div>
+                    </div>
+                    <div style="width: 100%; padding: 16px; background: rgba(59,130,246,0.1); border-radius: 8px; text-align: center; border: 1px solid rgba(59,130,246,0.2);">
+                        <span style="color: #3b82f6; font-size: 14px;">📍 40.7580, -73.9855 · Times Square, NYC</span>
+                    </div>
+                </div>
+                <div class="card-footer">GPS inteligente: conoce ubicacion, ruta, limites de velocidad y senalizacion.</div>
+            </div>
+        </section>
+
+        <section class="grid-2col">
+            <div class="card full-width">
+                <div class="card-header">
+                    <h3>Historial de eventos del dia</h3>
+                    <span class="card-rubric">Vision artificial + sensores</span>
+                </div>
+                <div class="card-body p-0">
+                    <table class="fleet-table">
+                        <thead>
+                            <tr><th>Hora</th><th>Tipo</th><th>Evento</th><th>Nivel confianza</th><th>Accion</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10:20</td>
+                                <td><span class="badge badge-yellow">Celular</span></td>
+                                <td>Uso de celular detectado por camara</td>
+                                <td>87%</td>
+                                <td><span class="response-badge resolved">Advertencia sonora</span></td>
+                            </tr>
+                            <tr>
+                                <td>09:45</td>
+                                <td><span class="badge badge-red">Velocidad</span></td>
+                                <td>47 km/h en zona de 40 km/h</td>
+                                <td>95%</td>
+                                <td><span class="response-badge resolved">Advertencia sonora</span></td>
+                            </tr>
+                            <tr>
+                                <td>08:30</td>
+                                <td><span class="badge badge-purple">Fatiga</span></td>
+                                <td>Parpadeo frecuente - 28 parpadeos/min</td>
+                                <td>72%</td>
+                                <td><span class="response-badge pending">Advertencia visual</span></td>
+                            </tr>
+                            <tr>
+                                <td>07:00</td>
+                                <td><span class="badge badge-green">Alcohol</span></td>
+                                <td>Prueba de alcohol - resultado negativo</td>
+                                <td>99%</td>
+                                <td><span class="response-badge resolved">Vehiculo habilitado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">Todos los eventos son validados por IA con nivel de confianza antes de actuar.</div>
+            </div>
+        </section>
+
+        <section class="rubrics-section">
+            <h3>Tu resumen de seguridad</h3>
+            <div class="rubrics-grid">
+                <div class="rubric-card">
+                    <div class="rubric-icon">📷</div>
+                    <h4>Camara interior</h4>
+                    <p>Monitoreo continuo de conductor: celular, fatiga, distraccion, conducta agresiva.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">📊</div>
+                    <h4>Puntaje de conduccion: 92</h4>
+                    <p>Basado en velocidad, cumplimiento de ruta, pausas, y atencion al volante.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">🔔</div>
+                    <h4>Alertas escalonadas</h4>
+                    <p>Recibis advertencias antes de que se generen reportes automaticos a central.</p>
+                </div>
+                <div class="rubric-card">
+                    <div class="rubric-icon">🛡️</div>
+                    <h4>Modo seguro</h4>
+                    <p>En caso de emergencia, el sistema puede solicitar relevo o detener el vehiculo de forma segura.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
